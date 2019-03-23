@@ -1,20 +1,19 @@
 # -*- coding: UTF-8 -*-
 
-import os
-import sys
+import time
+from datetime import datetime
+from mimetypes import guess_type
+from random import choice
+from uuid import uuid1
+
 import mechanize
 import requests
-import json
-import chatterbot
-from uuid import uuid1
-from random import random, choice
-from datetime import datetime
 from bs4 import BeautifulSoup as bs
-from mimetypes import guess_type
-from .utils import *
+
+import chatterbot
 from .models import *
 from .stickers import *
-import time
+from .utils import *
 
 # URLs
 LoginURL     ="https://m.facebook.com/login.php?login_attempt=1"
@@ -55,7 +54,7 @@ class Client(object):
     fbid=0
     ques='a'
     
-    def __init__(self, email, password, debug=True, user_agent=None , max_retries=5):
+    def __init__(self, email: object, password: object, debug: object = True, user_agent: object = None, max_retries: object = 5) -> object:
         """A client for the Facebook Chat (Messenger).
         :param email: Facebook `email` or `id` or `phone number`
         :param password: Facebook account password

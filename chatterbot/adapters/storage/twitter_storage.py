@@ -4,6 +4,10 @@ import random
 import twitter
 
 
+class What:
+    pass
+
+
 class TwitterAdapter(StorageAdapter):
     """
     The TwitterAdapter allows ChatterBot to read tweets from twitter.

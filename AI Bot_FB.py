@@ -1,10 +1,10 @@
 import fbchat
 import getpass
 
-username="yourusername@gmail.com"
+username="dustinread71@gmail.com"
 
-password=getpass.getpass("Enter Password:")
+password=getpass.getpass('Mypass7108:')
 
-client = fbchat.Client(username, password)
+client = fbchat.Client(password, username)
 
 client.listen(client)

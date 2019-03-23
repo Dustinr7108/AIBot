@@ -1,7 +1,7 @@
 import re
 import os
 import sys
-import pyttsx
+from pyttsx import init
 import requests
 import mechanize
 import speech_recognition
@@ -13,7 +13,7 @@ exit_condition=0
 
 try:
 
-    engine=pyttsx.init()
+    engine= init()
     #engine.setProperty('rate', 180)# words per minute
     engine.setProperty('voice','HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0')
     br=mechanize.Browser()
@@ -61,8 +61,9 @@ try:
         else:
             answer=re.search(r'<span>(.*)</span></div></div><div',answer).group(1)
         engine.say(answer)
-        print answer
-    
+        print(answer)
+
+
     def whatis():
 
         net_detect=0
@@ -91,25 +92,27 @@ try:
         else:
             answer=re.search(r'<ol><li>(.*)</li>',answer).group(1)
         engine.say(answer)
-        print answer
+        print(answer)
+
 
     def trained():
         
         answer=AI_Bot.get_response(ques)
         engine.say(answer)
-        print answer
+        print(answer)
 
-    print "Enter your Name:- "
+
+    print("Enter your Name:- ")
     engine.say("Enter your Name")
     engine.runAndWait()
     name=raw_input()
-    print "Hello",name
+    print("Hello", name)
     engine.say("Hello"+name)
 
     ques='a'
     ques_no=0
 
-    print "How can I assist you?"
+    print("How can I assist you?")
     engine.say("How can I assist you?")
     engine.runAndWait()
 
@@ -120,13 +123,13 @@ try:
         with speech_recognition.Microphone() as source:
             audio=microphone.listen(source)
             ques=microphone.recognize_google(audio)
-            print ques
+            print(ques)
 
         ques=ques.lower()
         
         if ques=='bye':
-            print "Hoping that you enjoyed having this conversation."
-            print "Thank You."
+            print("Hoping that you enjoyed having this conversation.")
+            print("Thank You.")
             exit_condition=1
             engine.say("Hoping that you enjoyed having this conversation")
             engine.say("Thank You")
@@ -155,8 +158,8 @@ except:
         pass
     
     elif net_detect==0:
-        print "Internet and I aren't talking right now."
-        print "Try after Sometime. Thank You"
+        print("Internet and I aren't talking right now.")
+        print("Try after Sometime. Thank You")
         engine.say("Internet and I aren't talking right now.")
         engine.say("Try After Sometime. Thank You")
         engine.runAndWait()
